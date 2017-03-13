@@ -34,19 +34,32 @@ module.exports = {
     externals: [/^\@angular\//, /^rxjs\//],
 
     module: {
-        rules: [{
-            enforce: 'pre',
-            test: /\.ts$/,
-            loader: 'tslint-loader',
-            exclude: [helpers.root('node_modules')]
-        }, {
-            test: /\.ts$/,
-            loader: 'awesome-typescript-loader',
-            options: {
-                declaration: false
+        rules: [
+            {
+                enforce: 'pre',
+                test: /\.ts$/,
+                loader: 'tslint-loader',
+                exclude: [helpers.root('node_modules')]
             },
-            exclude: [/\.spec\.ts$/]
-        }]
+            {
+                test: /\.ts$/,
+                loader: 'awesome-typescript-loader',
+                options: {
+                    declaration: false
+                },
+                exclude: [/\.spec\.ts$/]
+            },
+
+            /* Raw loader support for *.html
+             * Returns file content as string
+             *
+             * See: https://github.com/webpack/raw-loader
+             */
+            {
+                test: /\.html$/,
+                use: 'raw-loader'
+            }
+        ]
     },
 
     plugins: [
