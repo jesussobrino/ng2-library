@@ -56,10 +56,7 @@ module.exports = {
             template: 'index.html',
             chunksSortMode: 'dependency'
         }),
-        new CopyWebpackPlugin([
-            {from: 'i18n/', to: 'i18n'}
-        ]),
-
+        
         new webpack.optimize.OccurrenceOrderPlugin(true),
 
         // fork the typescript linter into another process to speed up compilation
