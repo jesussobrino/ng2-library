@@ -4,14 +4,14 @@ import {NgModule} from "@angular/core";
 import {AppComponent} from "./app.component";
 import {RouterModule} from "@angular/router";
 import {HomeComponent} from "./home.component";
-import {MtComponentsModule} from "mt-components";
 
+import {HelloWorld} from "mt-components";
+import {LangSelectorComponent} from "mt-components";
 
 @NgModule({
     imports: [
         BrowserModule,
         HttpModule,
-        MtComponentsModule,
         RouterModule.forRoot([
             {path: '', component: HomeComponent}
         ]),
