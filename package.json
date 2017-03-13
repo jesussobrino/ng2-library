@@ -1,5 +1,5 @@
 {
-  "name": "@backoffice/components",
+  "name": "mt-components",
   "description": "Angular 2 components library",
   "version": "1.0.0",
   "scripts": {
