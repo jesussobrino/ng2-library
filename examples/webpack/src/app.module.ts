@@ -4,19 +4,17 @@ import {NgModule} from "@angular/core";
 import {AppComponent} from "./app.component";
 import {RouterModule} from "@angular/router";
 import {HomeComponent} from "./home.component";
-import {HelloWorld} from "../../../src/hello-world";
+import {HelloWorld} from "mt-components";
 
 @NgModule({
     imports: [
         BrowserModule,
         HttpModule,
-        HelloWorld,
         RouterModule.forRoot([
-            {path: '', component: HomeComponent},
-            {path: 'lazy', loadChildren: './lazy/lazy.module#LazyModule'}
+            {path: '', component: HomeComponent}
         ]),
     ],
-    declarations: [AppComponent, HomeComponent],
+    declarations: [AppComponent, HomeComponent, HelloWorld],
     bootstrap: [AppComponent]
 })
 export class AppModule {

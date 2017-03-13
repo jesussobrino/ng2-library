@@ -5,7 +5,6 @@ import {Component, ChangeDetectionStrategy} from '@angular/core';
     changeDetection: ChangeDetectionStrategy.OnPush,
     template: `
         <a [routerLink]="['']">Home</a>
-        <a [routerLink]="['lazy']">Lazy loaded view</a>
         <router-outlet></router-outlet>
   `,
 })
