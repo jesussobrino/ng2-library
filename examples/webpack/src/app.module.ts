@@ -16,7 +16,7 @@ import {LangSelectorComponent} from "mt-components";
             {path: '', component: HomeComponent}
         ]),
     ],
-    declarations: [AppComponent, HomeComponent],
+    declarations: [AppComponent, HomeComponent, HelloWorld, LangSelectorComponent],
     bootstrap: [AppComponent]
 })
 export class AppModule {

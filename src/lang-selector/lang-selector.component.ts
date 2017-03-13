@@ -4,7 +4,7 @@ import {Language} from "./language.model";
 @Component({
     selector: 'mt-lang-selector',
     styleUrls: ['./lang-selector.component.css'],
-    templateUrl: './lang-selector.component.html'
+    template: require('./lang-selector.component.html')
 })
 export class LangSelectorComponent implements OnInit{
 
