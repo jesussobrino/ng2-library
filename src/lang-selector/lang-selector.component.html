@@ -1,0 +1,13 @@
+<div class="lang-selector">
+    <button class="lang-selector__button" (click)="showLanguages = !showLanguages">
+        <span [class]="selected.flagClass"></span>
+        <span>{{selected.name}}</span>
+        <span [ngClass]="{'caret': true, 'open':showLanguages}" class="caret"></span>
+    </button>
+    <ul [ngClass]="{'lang-selector__options': true, 'active':showLanguages}">
+        <li *ngFor="let lang of languages" (click)="onChangeLanguage(lang)">
+            <span [class]="lang.flagClass"></span>
+            <span>{{lang.name}}</span>
+        </li>
+    </ul>
+</div>

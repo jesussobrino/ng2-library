@@ -18,6 +18,7 @@
   "files": [
     "index.ts",
     "./src/hello-world.ts",
+    "./src/lang-selector/lang-selector.component.ts",
     "tests/hello-world.spec.ts"
   ],
   "exclude": [

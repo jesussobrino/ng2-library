@@ -4,17 +4,19 @@ import {NgModule} from "@angular/core";
 import {AppComponent} from "./app.component";
 import {RouterModule} from "@angular/router";
 import {HomeComponent} from "./home.component";
-import {HelloWorld} from "mt-components";
+import {MtComponentsModule} from "mt-components";
+
 
 @NgModule({
     imports: [
         BrowserModule,
         HttpModule,
+        MtComponentsModule,
         RouterModule.forRoot([
             {path: '', component: HomeComponent}
         ]),
     ],
-    declarations: [AppComponent, HomeComponent, HelloWorld],
+    declarations: [AppComponent, HomeComponent],
     bootstrap: [AppComponent]
 })
 export class AppModule {
