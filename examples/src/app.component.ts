@@ -4,9 +4,12 @@ import {Component, ChangeDetectionStrategy} from '@angular/core';
     selector: 'my-app',
     changeDetection: ChangeDetectionStrategy.OnPush,
     template: `
-        <a [routerLink]="['']">Home</a>
-        <router-outlet></router-outlet>
-  `,
+        <div class="app-routes">
+            <a [routerLink]="['']">Home</a>
+            <a [routerLink]="['/hello-world']">Hello world</a>
+            <a [routerLink]="['/lang-selector']">Language selector</a>
+        </div>
+        <router-outlet></router-outlet>`,
 })
 export class AppComponent {
 
