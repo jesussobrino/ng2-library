@@ -35,19 +35,55 @@ module.exports = {
 
     module: {
         rules: [
+            // {
+            //     enforce: 'pre',
+            //     test: /\.ts$/,
+            //     loader: 'tslint-loader',
+            //     exclude: [helpers.root('node_modules')]
+            // },
+            // {
+            //     test: /\.ts$/,
+            //     loader: 'awesome-typescript-loader',
+            //     options: {
+            //         declaration: false
+            //     },
+            //     exclude: [/\.spec\.ts$/]
+            // },
+
             {
-                enforce: 'pre',
                 test: /\.ts$/,
-                loader: 'tslint-loader',
-                exclude: [helpers.root('node_modules')]
+                use: [
+                    {
+                        loader: 'tslint-loader'
+                    },
+                    {
+                        loader: 'awesome-typescript-loader'
+                    },
+                    {
+                        loader: 'angular2-template-loader'
+                    }
+                ],
+                exclude: [/\.(spec|e2e)\.ts$/]
             },
+
+            /*
+             * raw and css loader support for *.css files (from Angular components)
+             * Returns file content as string
+             *
+             */
             {
-                test: /\.ts$/,
-                loader: 'awesome-typescript-loader',
-                options: {
-                    declaration: false
-                },
-                exclude: [/\.spec\.ts$/]
+                test: /\.css$/,
+                use: ['raw-loader', 'css-loader']
+            },
+
+            /*
+             * raw and sass loader support for *.scss files (from Angular stand-alone-components)
+             * Returns compiled css content as string
+             *
+             */
+            {
+                test: /\.scss$/,
+                use: ['raw-loader', 'sass-loader']
             },
 
             /* Raw loader support for *.html
@@ -57,7 +93,8 @@ module.exports = {
              */
             {
                 test: /\.html$/,
-                use: 'raw-loader'
+                use: 'raw-loader',
+                exclude: [helpers.root('src/index.html')]
             }
         ]
     },

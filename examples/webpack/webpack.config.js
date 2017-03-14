@@ -18,11 +18,54 @@ module.exports = {
     devtool: 'cheap-module-source-map',
 
     module: {
-        rules: [{
-            test: /\.ts$/,
-            loaders: ['awesome-typescript-loader', 'angular2-router-loader'],
-            exclude: /(node_modules)/
-        }]
+        rules: [
+            {
+                test: /\.ts$/,
+                use: [
+                    {
+                        loader: 'awesome-typescript-loader'
+                    },
+                    {
+                        loader: 'angular2-template-loader'
+                    },
+                    {
+                        loader: 'angular2-router-loader'
+                    }
+                ],
+                exclude: [/(node_modules)/]
+            },
+
+            /*
+             * raw and css loader support for *.css files (from Angular components)
+             * Returns file content as string
+             *
+             */
+            {
+                test: /\.css$/,
+                use: ['raw-loader', 'css-loader']
+            },
+
+            /*
+             * raw and sass loader support for *.scss files (from Angular stand-alone-components)
+             * Returns compiled css content as string
+             *
+             */
+            {
+                test: /\.scss$/,
+                use: ['raw-loader', 'sass-loader']
+            },
+
+            /* Raw loader support for *.html
+             * Returns file content as string
+             *
+             * See: https://github.com/webpack/raw-loader
+             */
+            {
+                test: /\.html$/,
+                use: 'raw-loader',
+                exclude: [helpers.root('src/index.html')]
+            }
+        ]
     },
 
     entry: {
@@ -56,7 +99,7 @@ module.exports = {
             template: 'index.html',
             chunksSortMode: 'dependency'
         }),
-        
+
         new webpack.optimize.OccurrenceOrderPlugin(true),
 
         // fork the typescript linter into another process to speed up compilation
