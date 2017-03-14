@@ -16,8 +16,8 @@ import {LangSelectorComponent} from "mt-components";
         HttpModule,
         RouterModule.forRoot([
             {path: '', component: HomeComponent},
-            {path: '/hello-world', component: HelloWorldExampleComponent},
-            {path: '/lang-selector', component: LangSelectorExampleComponent}
+            {path: 'hello-world', component: HelloWorldExampleComponent},
+            {path: 'lang-selector', component: LangSelectorExampleComponent}
         ]),
     ],
     declarations: [
