@@ -13,6 +13,7 @@ tests
 examples
 .github
 coverage
+doc
 !*.metadata.json
 !bundles/*.js
 
