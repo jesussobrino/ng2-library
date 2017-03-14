@@ -93,8 +93,7 @@ module.exports = {
              */
             {
                 test: /\.html$/,
-                use: 'raw-loader',
-                exclude: [helpers.root('src/index.html')]
+                use: 'raw-loader'
             }
         ]
     },
