@@ -16,6 +16,7 @@ npm-debug.log
 !make.js
 !examples/**/*.js
 coverage
+doc
 *.metadata.json
 bundles
 
