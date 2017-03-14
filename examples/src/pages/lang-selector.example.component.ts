@@ -3,26 +3,32 @@ import {Language} from "mt-components";
 
 @Component({
     template: `
-        <h4>A language selector. Receives an array of Languages and emits an event when the language is changed</h4>
-        <mt-lang-selector [languages]="appLanguages" (languageChange)="onLanguageChanged($event)"></mt-lang-selector>`
+        <div style="padding:1em">
+            <h1>Language selector.</h1>
+            <h3>Receives an array of Languages and emits an event when the language is changed.</h3>
+            <p>Selected language: <strong>{{selectedLanguage}}</strong></p>
+            <mt-lang-selector [languages]="appLanguages" (languageChange)="onLanguageChanged($event)"></mt-lang-selector>
+        </div>`
 })
 export class LangSelectorExampleComponent {
+    selectedLanguage:string = 'en';
+
     appLanguages: Language[] = [
         {
             value: 'en',
-            selected: true,
+            selected: this.selectedLanguage == 'en',
             name: 'English',
             flagClass:'flag flag-us'
         },
         {
             value: 'es',
-            selected: false,
+            selected: this.selectedLanguage == 'es',
             name: 'Español',
             flagClass:'flag flag-es'
         }
     ];
 
     onLanguageChanged(selectedLanguageValue: string) {
-        console.log('Language changed to: ', selectedLanguageValue)
+        this.selectedLanguage = selectedLanguageValue;
     }
 }

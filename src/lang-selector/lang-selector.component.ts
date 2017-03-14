@@ -30,8 +30,8 @@ export class LangSelectorComponent implements OnInit {
      */
     @Output() languageChange = new EventEmitter<any>();
 
-    private showLanguages: boolean = false;
-    private selected: Language = null;
+    showLanguages: boolean = false;
+    selected: Language = null;
 
 
     ngOnInit(): void {

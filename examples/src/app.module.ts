@@ -1,14 +1,13 @@
 import {HttpModule} from "@angular/http";
 import {BrowserModule} from "@angular/platform-browser";
 import {NgModule} from "@angular/core";
-import {AppComponent} from "./app.component";
+import {LocationStrategy, HashLocationStrategy} from "@angular/common";
 import {RouterModule} from "@angular/router";
+import {AppComponent} from "./app.component";
 import {HomeComponent} from "./home.component";
 import {HelloWorldExampleComponent} from "./pages/hello-world.example.component";
 import {LangSelectorExampleComponent} from "./pages/lang-selector.example.component";
-
-import {HelloWorldComponent} from "mt-components";
-import {LangSelectorComponent} from "mt-components";
+import {HelloWorldComponent, LangSelectorComponent} from "mt-components";
 
 @NgModule({
     imports: [
@@ -17,7 +16,8 @@ import {LangSelectorComponent} from "mt-components";
         RouterModule.forRoot([
             {path: '', component: HomeComponent},
             {path: 'hello-world', component: HelloWorldExampleComponent},
-            {path: 'lang-selector', component: LangSelectorExampleComponent}
+            {path: 'lang-selector', component: LangSelectorExampleComponent},
+            {path: '**', component: HomeComponent }
         ]),
     ],
     declarations: [
@@ -28,7 +28,10 @@ import {LangSelectorComponent} from "mt-components";
         LangSelectorComponent,
         LangSelectorExampleComponent
     ],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    providers: [
+        { provide: LocationStrategy, useClass: HashLocationStrategy }
+    ]
 })
 export class AppModule {
 }
