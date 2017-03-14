@@ -1,11 +1,11 @@
 /**
  * Adapted from angular2-webpack-starter
  */
+
 const helpers = require('./config/helpers'),
     webpack = require('webpack'),
     CleanWebpackPlugin = require('clean-webpack-plugin');
 
-var autoprefixer = require('autoprefixer');
 /**
  * Webpack Plugins
  */
@@ -26,7 +26,7 @@ module.exports = {
         path: helpers.root('bundles'),
         publicPath: '/',
         filename: 'core.umd.js',
-        library: 'mt-components',
+        library: 'ngx-translate-core',
         libraryTarget: 'umd'
     },
 
@@ -36,24 +36,18 @@ module.exports = {
     module: {
         rules: [
             {
+                enforce: 'pre',
                 test: /\.ts$/,
-                use: [
-                    {
-                        loader: 'tslint-loader'
-                    },
-                    {
-                        loader: 'awesome-typescript-loader'
-                    },
-                    {
-                        loader: 'angular2-template-loader'
-                    }
-                ],
-                exclude: [/\.(spec|e2e)\.ts$/]
+                loader: 'tslint-loader',
+                exclude: [helpers.root('node_modules')]
             },
-
-            // all css required in src/app files will be merged in js files
             {
-                test: /\.css$/,  loader: 'raw-loader!postcss-loader'
+                test: /\.ts$/,
+                loader: 'awesome-typescript-loader',
+                options: {
+                    declaration: false
+                },
+                exclude: [/\.spec\.ts$/]
             },
 
             /* Raw loader support for *.html
@@ -90,22 +84,6 @@ module.exports = {
             root: helpers.root(),
             verbose: false,
             dry: false
-        }),
-
-        new webpack.LoaderOptionsPlugin({
-            // add debug messages
-            debug: true,
-            minimize: false,
-            /**
-             * PostCSS
-             * Reference: https://github.com/postcss/autoprefixer-core
-             * Add vendor prefixes to your css
-             */
-            postcss: [
-                autoprefixer({
-                    browsers: ['last 2 version']
-                })
-            ]
         })
     ]
 };
