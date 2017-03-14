@@ -1,11 +1,11 @@
 /**
  * Adapted from angular2-webpack-starter
  */
-
 const helpers = require('./config/helpers'),
     webpack = require('webpack'),
     CleanWebpackPlugin = require('clean-webpack-plugin');
 
+var autoprefixer = require('autoprefixer');
 /**
  * Webpack Plugins
  */
@@ -26,7 +26,7 @@ module.exports = {
         path: helpers.root('bundles'),
         publicPath: '/',
         filename: 'core.umd.js',
-        library: 'ngx-translate-core',
+        library: 'mt-components',
         libraryTarget: 'umd'
     },
 
@@ -35,21 +35,6 @@ module.exports = {
 
     module: {
         rules: [
-            // {
-            //     enforce: 'pre',
-            //     test: /\.ts$/,
-            //     loader: 'tslint-loader',
-            //     exclude: [helpers.root('node_modules')]
-            // },
-            // {
-            //     test: /\.ts$/,
-            //     loader: 'awesome-typescript-loader',
-            //     options: {
-            //         declaration: false
-            //     },
-            //     exclude: [/\.spec\.ts$/]
-            // },
-
             {
                 test: /\.ts$/,
                 use: [
@@ -66,24 +51,9 @@ module.exports = {
                 exclude: [/\.(spec|e2e)\.ts$/]
             },
 
-            /*
-             * raw and css loader support for *.css files (from Angular components)
-             * Returns file content as string
-             *
-             */
+            // all css required in src/app files will be merged in js files
             {
-                test: /\.css$/,
-                use: ['raw-loader', 'css-loader']
-            },
-
-            /*
-             * raw and sass loader support for *.scss files (from Angular stand-alone-components)
-             * Returns compiled css content as string
-             *
-             */
-            {
-                test: /\.scss$/,
-                use: ['raw-loader', 'sass-loader']
+                test: /\.css$/,  loader: 'raw-loader!postcss-loader'
             },
 
             /* Raw loader support for *.html
@@ -120,6 +90,22 @@ module.exports = {
             root: helpers.root(),
             verbose: false,
             dry: false
+        }),
+
+        new webpack.LoaderOptionsPlugin({
+            // add debug messages
+            debug: true,
+            minimize: false,
+            /**
+             * PostCSS
+             * Reference: https://github.com/postcss/autoprefixer-core
+             * Add vendor prefixes to your css
+             */
+            postcss: [
+                autoprefixer({
+                    browsers: ['last 2 version']
+                })
+            ]
         })
     ]
 };

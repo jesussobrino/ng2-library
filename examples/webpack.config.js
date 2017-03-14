@@ -35,26 +35,6 @@ module.exports = {
                 exclude: [/(node_modules)/]
             },
 
-            /*
-             * raw and css loader support for *.css files (from Angular components)
-             * Returns file content as string
-             *
-             */
-            {
-                test: /\.css$/,
-                use: ['raw-loader', 'css-loader']
-            },
-
-            /*
-             * raw and sass loader support for *.scss files (from Angular stand-alone-components)
-             * Returns compiled css content as string
-             *
-             */
-            {
-                test: /\.scss$/,
-                use: ['raw-loader', 'sass-loader']
-            },
-
             /* Raw loader support for *.html
              * Returns file content as string
              *
@@ -96,6 +76,7 @@ module.exports = {
 
         new HtmlWebpackPlugin({
             template: 'index.html',
+            inject: true,
             chunksSortMode: 'dependency'
         }),
 
